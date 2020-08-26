@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Test {
+    public static void main(String[] args) {
+       List<String> result= getHasTag("Universe Aeroplane");
+        System.out.println(result);
+    }
+
+    public static List<String> getHasTag(String data){
+
+        List<String> dataA= Arrays.asList(data.split(" ").clone());
+        dataA.sort((tag1, tag2) -> tag2.length() - tag1.length());
+        dataA= dataA.stream().map(dt->"#"+dt).collect(Collectors.toList());
+      if(dataA.size()>=3){
+          return dataA.subList(0,3);
+      }else {
+      return dataA.stream().sorted().collect(Collectors.toList());
+      }
+    }
+}
